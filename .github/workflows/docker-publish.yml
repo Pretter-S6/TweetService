@@ -1,4 +1,5 @@
 name: docker publish
+
 on:
   release:
     types: [published]

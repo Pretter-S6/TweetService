@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: docker
 on: push
 jobs:
   push_to_registries:
@@ -24,4 +24,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/simplewhale:latest

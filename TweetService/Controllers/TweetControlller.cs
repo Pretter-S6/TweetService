@@ -6,25 +6,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using TweetService.Models;
 
-namespace API_Gateway.Controllers
+namespace TweetService
 {
     [ApiController]
     [Route("/test")]
     public class TweetController : ControllerBase
     {
-
+        private ITweetService iTweetService;
         private readonly ILogger<TweetController> _logger;
 
         public TweetController(ILogger<TweetController> logger)
         {
             _logger = logger;
+            iTweetService = new TweetService();
         }
 
         [HttpGet]
-        public List<Tweet> getAll()
+        public ActionResult<List<Tweet>> getAll()
         {
-            TweetData t = new TweetData();
-            return t.getAll();
+            try
+            {
+                return Ok(iTweetService.getAll());
+            }
+            catch
+            {
+                return NotFound();
+            }
         }
     }
 }

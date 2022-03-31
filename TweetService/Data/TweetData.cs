@@ -10,10 +10,10 @@ using TweetService.Models;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace API_Gateway.Controllers
+namespace TweetService
 {
 
-    public class TweetData : ControllerBase
+    public class TweetData
     {
 
         public TweetData()

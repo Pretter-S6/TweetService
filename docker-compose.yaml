@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+    pkg:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        container_name: TweetService
+        ports:
+            - "0.0.0.0:5002:5002"

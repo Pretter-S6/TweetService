@@ -4,34 +4,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TweetService.DataAccess;
 using TweetService.Models;
 
-namespace TweetService
+namespace TweetService.TweetController
 {
     [ApiController]
     [Route("/test")]
     public class TweetController : ControllerBase
     {
-        private ITweetService iTweetService;
         private readonly ILogger<TweetController> _logger;
+        private readonly ITweetService _service;
+        private readonly TweetContext _db;
 
-        public TweetController(ILogger<TweetController> logger)
+        public TweetController(TweetContext db)
         {
-            _logger = logger;
-            iTweetService = new TweetService();
+            _db = db;
+            _service = new TweetService(_db);
         }
 
         [HttpGet]
-        public ActionResult<List<Tweet>> getAll()
+        public ActionResult<IEnumerable<Tweets>> getAll()
         {
-            try
-            {
-                return Ok(iTweetService.getAll());
-            }
-            catch
-            {
-                return NotFound();
-            }
+
+            //return Ok(_service.getAll());
+            return Ok(_service.getTweetsByUserID(1));
         }
     }
 }

@@ -9,39 +9,44 @@ using System.Text;
 using TweetService.Models;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using TweetService.DataAccess;
 
 namespace TweetService
 {
 
     public class TweetService : ITweetService
     {
-        private TweetData tweetData;
 
-        public TweetService()
+        private readonly TweetContext _db;
+
+
+        public TweetService(TweetContext db)
         {
-            tweetData = new TweetData();
+            _db = db;
+        }
+
+        public List<Tweets> getAll()
+        {
+            var tweets = _db.tweets.ToList();
+            return tweets;
         }
 
 
-        public List<Tweet> getTweetsByUserID(int userID)
+        public List<Tweets> getTweetsByUserID(int userID)
         {
-            return tweetData.getTweetsByUserID(userID);
+            var tweets = _db.tweets.Where(x => x.ID == userID).ToList();
+            return tweets;
         }
 
 
-        public List<Tweet> getAll()
-        {
-            return tweetData.getAll();
-        }
+        //public List<Reactions> getReactionByTweetID(int tweetID)
+        //{
+        //    return null;
+        //}
 
-        public List<Reaction> getReactionByTweetID(int tweetID)
+        public List<Tweets> getLikesByTweetID(int tweetID)
         {
-            return tweetData.getReactionByTweetID(tweetID);
-        }
-
-        public List<Like> getLikesByTweetID(int tweetID)
-        {
-            return tweetData.getLikesByTweetID(tweetID);
+            return null;
         }
     }
 }

@@ -15,10 +15,10 @@ namespace TweetService
 
     public interface ITweetService 
     {
-        List<Tweet> getTweetsByUserID(int userID);
-        List<Tweet> getAll();
-        List<Reaction> getReactionByTweetID(int tweetID);
-        List<Like> getLikesByTweetID(int tweetID);
+        List<Tweets> getTweetsByUserID(int userID);
+        List<Tweets> getAll();
+        //List<Reactions> getReactionByTweetID(int tweetID);
+        List<Tweets> getLikesByTweetID(int tweetID);
     }
 }
 

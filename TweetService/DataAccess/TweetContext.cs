@@ -9,6 +9,7 @@ namespace TweetService.DataAccess
 {
     public class TweetContext : DbContext
     {
+        //entity framework
         public TweetContext(DbContextOptions options) : base(options) { }
         public DbSet<Tweets> tweets { get; set; }
 

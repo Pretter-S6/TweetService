@@ -10,7 +10,7 @@ using TweetService.Models;
 namespace TweetService.TweetController
 {
     [ApiController]
-    [Route("/test")]
+    [Route("/tweets")]
     public class TweetController : ControllerBase
     {
         private readonly ILogger<TweetController> _logger;
@@ -28,7 +28,7 @@ namespace TweetService.TweetController
         {
 
             //return Ok(_service.getAll());
-            return Ok(_service.getTweetsByUserID(1));
+            return Ok(_service.getAll());
         }
     }
 }

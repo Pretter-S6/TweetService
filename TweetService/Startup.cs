@@ -29,6 +29,19 @@ namespace TweetService
         {
             services.AddControllers();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+
+                    });
+            });
+
             services.AddDbContext<TweetContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Connectionstring"));
@@ -44,6 +57,8 @@ namespace TweetService
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAll");
 
             app.UseRouting();
 
